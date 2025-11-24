@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #050505;
+  --text: #ffffff;
+  --accent: #ff3c00; /* Fire Red */
+  --secondary: #999;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide default cursor */ }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; cursor: none;}
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* Utilities */
+.container { width: 90%; max-width: 1400px; margin: 0 auto; }
+.btn { 
+    border: 1px solid rgba(255,255,255,0.2); 
+    padding: 12px 30px; 
+    border-radius: 50px; 
+    text-transform: uppercase; 
+    font-size: 0.8rem; 
+    letter-spacing: 1px;
+    transition: 0.3s;
+    &:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+}
+
+/* Animations & Effects */
+.hover-accent { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.hover-accent:hover { color: var(--accent); padding-left: 15px; }
+
+.panel:hover img { filter: grayscale(0%) !important; scale: 1.05; }
+.bg-reveal { opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+
+/* Lenis CSS */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* RESPONSIVE CARD SIZING */
+@media (max-width: 768px) {
+    .work-card {
+        min-width: 80vw !important; /* Mobile: Show 1 big card with hints of next */
+    }
+}
+/* --- PORTFOLIO GRID --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 Column layout */
+    gap: 4rem;
+}
+
+/* STAGGERED LAYOUT (Pinterest feel) */
+/* Push the second column down slightly to look organic */
+.project-grid .project-card:nth-child(even) {
+    transform: translateY(80px); 
+}
+
+/* TABLET/MOBILE RESPONSIVENESS */
+@media (max-width: 900px) {
+    .project-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 3rem;
+    }
+    .project-grid .project-card:nth-child(even) {
+        transform: translateY(0px); /* Remove offset on mobile */
+    }
+}
