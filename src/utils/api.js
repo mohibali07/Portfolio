@@ -1,6 +1,9 @@
 // --- CONFIGURATION ---
 // Update this line with your NEW Hostinger URL
-const BASE_URL = import.meta.env.VITE_API_URL;
+// Update this line with your NEW Hostinger URL
+const BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://darkgoldenrod-wombat-129752.hostingersite.com";
 const WP_API_URL = `${BASE_URL}/wp-json/wp/v2`;
 
 export const fetchPageBySlug = async (slug) => {
