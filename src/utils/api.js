@@ -19,7 +19,7 @@ export const fetchPageBySlug = async (slug) => {
 
 export const fetchPortfolio = async (limit = 20) => {
   try {
-    const res = await fetch(`${WP_API_URL}/portfolio?per_page=${limit}`);
+    const res = await fetch(`${WP_API_URL}/portfolio?per_page=${limit}&_embed`);
     const data = await res.json();
 
     if (!Array.isArray(data)) return [];
