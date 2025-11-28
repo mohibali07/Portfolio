@@ -74,3 +74,13 @@ html.lenis, html.lenis body { height: auto; }
         transform: translateY(0px); /* Remove offset on mobile */
     }
 }
+@media (max-width: 768px) {
+    .stack-card {
+       flex-direction: column; /* Stack content vertically on mobile */
+       padding: 2rem !important;
+       height: 65vh !important;
+    }
+    .stack-card h3 {
+       fontSize: 3rem !important;
+    }
+  }

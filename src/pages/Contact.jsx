@@ -1,9 +1,14 @@
 import React from 'react';
 import ContactForm from '../components/ContactForm'; // Import Form
+import { Helmet } from 'react-helmet-async';
 
 const Contact = () => {
   return (
     <div className="container" style={{paddingTop:'150px', paddingBottom:'100px', display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(350px, 1fr))', gap:'5rem'}}>
+        <Helmet>
+          <title>Contact | Mohib Ali</title>
+          <meta name="description" content="Get in touch with Mohib Ali for your next project." />
+        </Helmet>
         
         {/* Left Side: Info */}
         <div>
