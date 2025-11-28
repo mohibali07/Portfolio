@@ -29,10 +29,22 @@ const Home = () => {
       if (portfolioData) setPortfolio(portfolioData);
 
       // Add a small delay to ensure the preloader animation feels complete
-      setTimeout(() => setLoading(false), 2000);
+      setTimeout(() => setLoading(false), 2500);
     };
     init();
   }, []);
+
+  // Disable scroll when loading
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [loading]);
 
   return (
     <>
