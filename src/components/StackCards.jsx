@@ -33,7 +33,7 @@ const StackCards = ({ items }) => {
   // -- LOGIC: PROCESS WP DATA OR USE DEFAULT --
   // If "items" comes from WP, map it. Otherwise use default.
   const cardsToRender =
-    items && items.length > 0
+    items && Array.isArray(items) && items.length > 0
       ? items.map((item, index) => ({
           id: index,
           title: item.card_title || "Untitled",
