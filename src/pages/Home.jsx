@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Hero from "../components/Hero";
 import Marquee from "../components/Marquee";
 import HomeAbout from "../components/HomeAbout";
