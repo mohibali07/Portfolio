@@ -51,21 +51,21 @@ const StackCards = ({ items }) => {
     let ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".stack-card");
 
-      ScrollTrigger.create({
-        trigger: container.current,
-        start: "top top",
-        end: `+=${cards.length * 500}`,
-        pin: true,
-        scrub: 1,
-        animation: gsap.from(cards, {
-          y: window.innerHeight,
-          rotateX: -20,
-          opacity: 0,
-          stagger: 0.5,
-          duration: 1,
-          transformOrigin: "center top",
-        }),
-      });
+        ScrollTrigger.create({
+          trigger: container.current,
+          start: "top top",
+          end: `+=${cards.length * 100}%`, // Use percentage for better responsiveness
+          pin: true,
+          scrub: 1,
+          animation: gsap.from(cards, {
+            y: window.innerHeight,
+            rotateX: -20,
+            opacity: 0,
+            stagger: 0.5,
+            duration: 1,
+            transformOrigin: "center top",
+          }),
+        });
     }, container);
     return () => ctx.revert();
   }, [cardsToRender]); // Re-run animation if data changes

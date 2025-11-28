@@ -6,16 +6,11 @@ import { fetchPortfolio } from "../utils/api";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HomeWork = () => {
-  const [projects, setProjects] = useState([]);
+const HomeWork = ({ projects }) => {
   const comp = useRef();
   const gallery = useRef();
 
-  useEffect(() => {
-    fetchPortfolio(5).then((data) => {
-      setProjects(data);
-    });
-  }, []);
+  // Removed internal fetching logic since data is passed via props now
 
   useLayoutEffect(() => {
     if (projects.length === 0) return;
