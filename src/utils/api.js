@@ -28,18 +28,32 @@ export const fetchPortfolio = async (limit = 20) => {
       const fields = Array.isArray(post.acf) ? {} : post.acf;
 
       // --- IMAGE PRIORITY LOGIC ---
-      // Helper to extract URL from ACF Image field (which can be Object, URL string, or ID)
-      const getAcfUrl = (field) => {
+      // Helper to extract URL from ACF Image field
+      const getAcfUrl = (item) => {
+        const acf = item.acf;
+        if (!acf) return null;
+
+        // 1. Check 'custom_featured_image_source' (ACF to REST API plugin format)
+        if (
+          acf.custom_featured_image_source &&
+          typeof acf.custom_featured_image_source.formatted_value === "string"
+        ) {
+          return acf.custom_featured_image_source.formatted_value;
+        }
+
+        // 2. Check standard 'custom_featured_image' (Object or URL)
+        const field = acf.custom_featured_image;
         if (!field) return null;
         if (typeof field === "string") return field; // It's a URL
         if (typeof field === "object" && field.url) return field.url; // It's an Image Object
+
         return null;
       };
 
-      const acfImage = getAcfUrl(fields.custom_featured_image);
+      const acfImage = getAcfUrl(post);
 
       let img =
-        acfImage || // 1. ACF Field (User explicitly set this)
+        acfImage || // 1. ACF Field (Prioritized)
         post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || // 2. Standard Featured Image
         post.featured_media_src_url || // 3. Plugin Fallback
         "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80"; // 4. Final Fallback

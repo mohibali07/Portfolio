@@ -29,7 +29,6 @@ function App() {
           <Route path="/portfolio" element={<Layout><Portfolio /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
-          <Route path="/debug" element={<Debug />} />
         </Routes>
       </Router>
     </ReactLenis>
