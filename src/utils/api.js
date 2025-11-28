@@ -28,11 +28,10 @@ export const fetchPortfolio = async (limit = 20) => {
       const fields = Array.isArray(post.acf) ? {} : post.acf;
 
       // --- IMAGE PRIORITY LOGIC ---
-      // 1. New Host usually supports standard featured media better
       let img =
-        fields.custom_featured_image || // The manual link field (Safest)
-        post.featured_media_src_url || // Plugin (Better REST API)
-        post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || // Standard
+        post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || // Standard WP (Most Reliable)
+        fields.custom_featured_image || // ACF Field
+        post.featured_media_src_url || // Plugin
         "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80"; // Fallback
 
       // Taxonomy
