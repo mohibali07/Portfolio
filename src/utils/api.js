@@ -28,11 +28,21 @@ export const fetchPortfolio = async (limit = 20) => {
       const fields = Array.isArray(post.acf) ? {} : post.acf;
 
       // --- IMAGE PRIORITY LOGIC ---
+      // Helper to extract URL from ACF Image field (which can be Object, URL string, or ID)
+      const getAcfUrl = (field) => {
+        if (!field) return null;
+        if (typeof field === "string") return field; // It's a URL
+        if (typeof field === "object" && field.url) return field.url; // It's an Image Object
+        return null;
+      };
+
+      const acfImage = getAcfUrl(fields.custom_featured_image);
+
       let img =
-        post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || // Standard WP (Most Reliable)
-        fields.custom_featured_image || // ACF Field
-        post.featured_media_src_url || // Plugin
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80"; // Fallback
+        acfImage || // 1. ACF Field (User explicitly set this)
+        post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || // 2. Standard Featured Image
+        post.featured_media_src_url || // 3. Plugin Fallback
+        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80"; // 4. Final Fallback
 
       // Taxonomy
       let taxonomyTag = "general";
