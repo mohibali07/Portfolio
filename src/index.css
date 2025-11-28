@@ -17,7 +17,7 @@
 html,
 body {
   width: 100%;
-  overflow-x: hidden; /* Fix horizontal scroll */
+  overflow-x: hidden!important; /* Fix horizontal scroll */
   margin: 0;
   padding: 0;
 }
