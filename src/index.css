@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Syne", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,6 +11,33 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* GLOBAL RESET & SCROLLBAR */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden; /* Fix horizontal scroll */
+  margin: 0;
+  padding: 0;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff3c00; /* Accent color on hover */
 }
 
 a {
