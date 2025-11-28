@@ -8,7 +8,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 
-import Debug from "./pages/Debug";
+
 
 function App() {
   const lenisOptions = {
